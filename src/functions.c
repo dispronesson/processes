@@ -185,7 +185,7 @@ void interface(const char* path, char* const envp[]) {
                         execve(child_path, args, envp_child);
                     }
 
-                    //Если excve завершится ошибкой, этот код выполнится
+                    //Если execve завершится ошибкой, этот код выполнится
                     perror("CHILD_PATH");
 
                     //Если была ошибка, обязательно надо очистить память
