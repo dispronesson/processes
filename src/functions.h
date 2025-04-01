@@ -29,6 +29,6 @@ char* create_name_child(int count);
 
 char getch();
 
-void interface(const char* path, char* const envp[]);
+void interface(const char* path);
 
 #endif //FUNCTIONS_H

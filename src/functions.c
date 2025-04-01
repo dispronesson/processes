@@ -39,6 +39,7 @@ char** read_env(const char* path) {
 
     int size = 0;
     char key[64];
+
     while (fgets(key, sizeof(key), file)) { //Подсчет кол-ва ключей
         size++;
     }
@@ -58,8 +59,10 @@ char** read_env(const char* path) {
         }
 
         char* value = getenv(key); //Получение значения из окружения
-        if(!value) { //Если отсутствует, то .env файл неправильно настроен
-            fprintf(stderr, "error with .env file\n");
+        //Если отсутствует, то .env файл неправильно настроен 
+        //или значениене для ключа отсутствует
+        if(!value) {
+            fprintf(stderr, "error with .env file or value of key\n");
             exit(EXIT_FAILURE);
         }
 
@@ -100,7 +103,7 @@ void read_env_child(const char* path) {
 
         char* value = getenv(key);
         if(!value) {
-            fprintf(stderr, "error with .env file\n");
+            fprintf(stderr, "error with .env file or with value of key\n");
             exit(EXIT_FAILURE);
         }
 
@@ -155,7 +158,7 @@ char getch() {
 }
 
 //Функция обработки нажатия клавиш
-void interface(const char* path, char* const envp[]) {
+void interface(const char* path) {
     char* env_path = get_env_path(path);
     char** envp_child = read_env(env_path);
 
@@ -179,7 +182,7 @@ void interface(const char* path, char* const envp[]) {
                     char* args[] = {name, ch_str, NULL, NULL}; //Создание массива argv
                     if (ch == '+') {
                         args[2] = env_path; //Добавление пути к .env файлу
-                        execve(child_path, args, envp); //Вызов функции, заменяющая текущий процесс
+                        execve(child_path, args, envp_child); //Вызов функции, заменяющая текущий процесс
                     }
                     else {
                         execve(child_path, args, envp_child);

@@ -21,7 +21,7 @@ int main(int argc, char* argv[], char* envp[]) {
         puts(envp[i]);
     }
 
-    interface(argv[0], envp); //Вход в цикл обработки нажатия клавиш
+    interface(argv[0]); //Вход в цикл обработки нажатия клавиш
 
     return 0;
 }
