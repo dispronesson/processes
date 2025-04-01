@@ -1,7 +1,7 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-//Подключение POSIX-совместимых функций и расширение X/Open
+//Подключение POSIX-совместимых функций и расширения X/Open
 #define _XOPEN_SOURCE 700
 
 //Подключение библиотек

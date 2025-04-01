@@ -5,7 +5,7 @@ int compare_env(const void* a, const void* b) {
     return strcoll(*(const char**)a, *(const char**)b);
 }
 
-//Функция получения полного пути, откуда запустилась программа
+//Функция получения полного пути откуда запустилась программа
 char* get_env_path(const char* path) {
     char prog_path[PATH_MAX];
     char* env_file_path;
@@ -86,7 +86,7 @@ char** read_env(const char* path) {
     return envp_child;
 }
 
-//Функция чтения файла .env, которая сразу выводит на консоль строки ключ=значение
+//Функция чтения файла .env, которая сразу выводит в stdout строки ключ=значение
 void read_env_child(const char* path) {
     FILE* file = fopen(path, "r");
     if (!file) {
